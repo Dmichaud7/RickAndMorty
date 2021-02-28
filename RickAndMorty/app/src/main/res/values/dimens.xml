@@ -10,4 +10,10 @@
     <dimen name="question_text_size">30sp</dimen>
     <dimen name="image_header_height">192dp</dimen>
     <dimen name="game_over_height">350dp</dimen>
+    <dimen name="margin24">24dp</dimen>
+    <dimen name="margin0">0dp</dimen>
+    <dimen name="margin32">32dp</dimen>
+    <dimen name="argin0">0dp</dimen>
+    <dimen name="margin64">64dp</dimen>
+    <dimen name="margin232">232dp</dimen>
 </resources>

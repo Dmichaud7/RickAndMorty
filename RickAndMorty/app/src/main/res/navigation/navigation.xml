@@ -7,26 +7,48 @@
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.example.rickandmorty.AboutFragment"
-        android:label="fragment_about"
+        android:label="@string/about"
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/ruleFragment"
         android:name="com.example.rickandmorty.RuleFragment"
-        android:label="fragment_rule"
+        android:label="@string/rules"
         tools:layout="@layout/fragment_rule" />
     <fragment
         android:id="@+id/titleFragment"
         android:name="com.example.rickandmorty.TitleFragment"
-        android:label="fragment_title"
-        tools:layout="@layout/fragment_title" />
+        android:label="@string/rickandmorty"
+        tools:layout="@layout/fragment_title" >
+        <action
+            android:id="@+id/action_titleFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
+    </fragment>
     <fragment
         android:id="@+id/gameFragment"
         android:name="com.example.rickandmorty.GameFragment"
-        android:label="fragment_game"
-        tools:layout="@layout/fragment_game" />
+        android:label="@string/quiz_time"
+        tools:layout="@layout/fragment_game" >
+        <action
+            android:id="@+id/action_gameFragment_to_scoreFragment"
+            app:destination="@id/scoreFragment"
+            app:popUpTo="@id/scoreFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_gameFragment_to_titleFragment"
+            app:destination="@id/titleFragment"
+            />
+    </fragment>
     <fragment
         android:id="@+id/scoreFragment"
         android:name="com.example.rickandmorty.ScoreFragment"
-        android:label="fragment_score"
-        tools:layout="@layout/fragment_score" />
+        android:label="@string/score"
+        tools:layout="@layout/fragment_score" >
+        <action
+            android:id="@+id/action_scoreFragment_to_titleFragment"
+            app:destination="@id/titleFragment" />
+        <argument
+            android:name="score"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
 </navigation>

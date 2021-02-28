@@ -13,7 +13,7 @@
 
         <ImageView
             android:id="@+id/rulesImage"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/argin0"
             android:layout_height="@dimen/image_header_height"
             android:layout_marginStart="@dimen/horizontal_margin"
             android:layout_marginTop="@dimen/vertical_margin"
@@ -21,7 +21,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/rnm03" />
 
         <TextView
             android:id="@+id/rulesText"

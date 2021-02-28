@@ -15,4 +15,14 @@
     <string name="word_is">The word is…</string>
     <string name="quote_format">\"%s\"</string>
     <string name="score_format">Current Score: %d</string>
+    <string name="title_rick_morty_question">Rick and Morty (%1$d/%2$d)</string>
+    <string name="rick_and_morty_quiz">Rick And Morty Quiz</string>
+    <string name="reset">Reset</string>
+    <string name="score">Score</string>
+    <string name="quiz_time">Quiz Time</string>
+    <string name="rickandmorty">Rick and Morty</string>
+    <string name="rules">Rules</string>
+    <string name="about">About</string>
+    <string name="ruless">RULES</string>
+    <string name="play">Play</string>
 </resources>

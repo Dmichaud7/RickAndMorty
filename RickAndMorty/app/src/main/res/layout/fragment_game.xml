@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.rickandmorty.">
+
 
 <!--    <data>-->
-
 <!--        <variable-->
 <!--            name="game"-->
-<!--            type="com.example.android.navigation.GameFragment" />-->
+<!--            type="com.example.rickandmorty.GameFragment" />-->
+<!--&lt;!&ndash;        <variable&ndash;&gt;-->
+<!--&lt;!&ndash;            name="score"&ndash;&gt;-->
+<!--&lt;!&ndash;            type="com.example.rickandmorty.GameFragment" />&ndash;&gt;-->
 <!--    </data>-->
 
+    <data>
+        <variable
+            name="gameViewModel"
+            type="com.example.rickandmorty.GameViewModel" />
+        <variable
+            name="game"
+            type="com.example.rickandmorty.GameFragment" />
+
+    </data>
+
     <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:context="com.example.rickandmorty."
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -36,7 +50,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="packed"
-                app:srcCompat="@drawable/logo" />
+                app:srcCompat="@drawable/rnm02" />
 
             <TextView
                 android:id="@+id/questionText"
@@ -45,10 +59,9 @@
                 android:layout_marginStart="@dimen/question_horizontal_margin"
                 android:layout_marginTop="@dimen/vertical_margin"
                 android:layout_marginEnd="@dimen/question_horizontal_margin"
-                android:layout_marginBottom="@dimen/vertical_margin"
                 android:fontFamily="sans-serif"
-                android:text="0"
-                android:textSize="@dimen/question_text_size"
+                android:text="@{gameViewModel.currentQuestions.text}"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:typeface="normal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -75,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/question_vertical_margin"
                     android:checked="true"
-                    android:text="0"
+                    android:text="@{gameViewModel.answers[0]}"
                     android:textSize="@dimen/answer_text_size"
                     tools:text="Blue" />
 
@@ -84,20 +97,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/question_vertical_margin"
-                    android:text="0"
+                    android:text="@{gameViewModel.answers[1]}"
                     android:textSize="@dimen/answer_text_size"
                     tools:text="Green" />
             </RadioGroup>
 
             <TextView
                 android:id="@+id/scoreText"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/margin0"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/question_horizontal_margin"
-                android:layout_marginTop="232dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="@dimen/question_horizontal_margin"
                 android:fontFamily="sans-serif"
-                android:text="0"
+                android:text="@{String.valueOf(gameViewModel.score)}"
                 android:textAlignment="center"
                 android:textSize="@dimen/question_text_size"
                 android:textStyle="bold"
@@ -105,49 +118,23 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/questionImage"
+                app:layout_constraintTop_toBottomOf="@+id/submitButton"
                 tools:text="0" />
-
-            <Button
-                android:id="@+id/resetButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/question_horizontal_margin"
-                android:layout_marginTop="64dp"
-                android:layout_marginEnd="@dimen/question_horizontal_margin"
-                android:text="Reset"
-                android:textSize="@dimen/button_text_size"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.956"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/questionRadioGroup" />
-
-            <Button
-                android:id="@+id/skipButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/question_horizontal_margin"
-                android:layout_marginTop="64dp"
-                android:layout_marginEnd="@dimen/question_horizontal_margin"
-                android:text="Skip"
-                android:textSize="@dimen/button_text_size"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.054"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/questionRadioGroup" />
 
             <Button
                 android:id="@+id/submitButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/question_horizontal_margin"
-                android:layout_marginTop="64dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="@dimen/question_horizontal_margin"
+                android:onClick="@{() -> gameViewModel.nextQuestion()}"
                 android:text="Submit"
                 android:textSize="@dimen/button_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.489"
+                app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/questionRadioGroup" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+</layout>
